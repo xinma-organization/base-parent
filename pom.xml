@@ -2,120 +2,63 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.xinma</groupId>
+    <artifactId>base-parent</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <name>base-parent</name>
+    <packaging>pom</packaging>
+    
+	<!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-parent -->
 	<parent>
-		<groupId>so.sao</groupId>
-		<artifactId>product-parent</artifactId>
-		<version>1.0.0-SNAPSHOT</version>
-		<relativePath />
+	    <groupId>org.springframework.boot</groupId>
+	    <artifactId>spring-boot-starter-parent</artifactId>
+	    <version>1.5.1.RELEASE</version>
 	</parent>
 
-	<artifactId>base-parent</artifactId>
-	<name>base-parent</name>
-	<packaging>pom</packaging>
-
 	<properties>
-		<!-- Definition of dependencies -->
-		<geoip2.version>2.1.0</geoip2.version>
+        <!-- Definition of plugin property -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.build.resourceEncoding>UTF-8</project.build.resourceEncoding>
+        <java.version>1.8</java.version>
+        <checkstyle.version>2.15</checkstyle.version>
+        <!-- Definition of dependencies -->
+        
+        <jackson.version>2.8.7</jackson.version>
+        <commons-lang3.version>3.5</commons-lang3.version>
+        <aliyun-mns.version>1.1.5</aliyun-mns.version>
 	</properties>
 
 	<dependencyManagement>
 		<dependencies>
-			<!-- ty core libs begin -->
 			<dependency>
-				<groupId>so.sao</groupId>
-				<artifactId>base-datastore</artifactId>
-				<version>${project.version}</version>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-lang3</artifactId>
+				<version>${commons-lang3.version}</version>
 			</dependency>
+			
+			<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
 			<dependency>
-				<groupId>so.sao</groupId>
-				<artifactId>base-model</artifactId>
-				<version>${project.version}</version>
+			    <groupId>com.fasterxml.jackson.core</groupId>
+			    <artifactId>jackson-databind</artifactId>
+			    <version>${jackson.version}</version>
 			</dependency>
-			<dependency>
-				<groupId>so.sao</groupId>
-				<artifactId>base-util</artifactId>
-				<version>${project.version}</version>
-			</dependency>
-			<!-- ty core libs end -->
 
-			<!-- PERSISTENCE begin -->
-			<!-- database connection pool -->
 			<dependency>
-				<groupId>com.mchange</groupId>
-				<artifactId>c3p0</artifactId>
-				<version>${c3p0.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>com.mchange</groupId>
-				<artifactId>mchange-commons-java</artifactId>
-				<version>0.2.10</version>
-			</dependency>
-			<!-- PERSISTENCE end -->
-
-			<!-- JSON begin -->
-			<dependency>
-				<groupId>com.alibaba</groupId>
-				<artifactId>fastjson</artifactId>
-				<version>${fastjson.version}</version>
-			</dependency>
-			<!-- JSON end -->
-
-			<!-- analytics sdk common -->
-			<dependency>
-				<groupId>so.sao</groupId>
-				<artifactId>analytics-sdk-common</artifactId>
-				<version>${analytics-sdk.version}</version>
-			</dependency>
-			<dependency>
-				<groupId>so.sao</groupId>
-				<artifactId>analytics-sdk-worker</artifactId>
-				<version>${analytics-sdk.version}</version>
+				<groupId>com.aliyun.mns</groupId>
+				<artifactId>aliyun-sdk-mns</artifactId>
+				<version>${aliyun-mns.version}</version>
 				<exclusions>
 					<exclusion>
-						<groupId>org.slf4j</groupId>
-						<artifactId>slf4j-api</artifactId>
-					</exclusion>
-					<exclusion>
-						<groupId>org.slf4j</groupId>
-						<artifactId>slf4j-log4j12</artifactId>
+						<groupId>commons-logging</groupId>
+						<artifactId>commons-logging</artifactId>
 					</exclusion>
 					<exclusion>
 						<groupId>log4j</groupId>
-						<artifactId>log4j</artifactId>
+	    				<artifactId>log4j</artifactId>
 					</exclusion>
 				</exclusions>
 			</dependency>
-			<!-- analytics sdk common end -->
-
-			<dependency>
-				<groupId>log4j</groupId>
-				<artifactId>log4j</artifactId>
-				<version>1.2.17</version>
-			</dependency>
-
-			<dependency>
-				<groupId>so.sao</groupId>
-				<artifactId>core-util</artifactId>
-				<version>${project.version}</version>
-				<classifier>tests</classifier>
-				<scope>test</scope>
-			</dependency>
-
-			<!-- servlet-api start -->
-			<dependency>
-				<groupId>javax.servlet</groupId>
-				<artifactId>javax.servlet-api</artifactId>
-				<version>3.1.0</version>
-				<scope>provided</scope>
-			</dependency>
-			<!-- servlet-api end -->
-
-			<dependency>
-				<groupId>com.maxmind.geoip2</groupId>
-				<artifactId>geoip2</artifactId>
-				<version>${geoip2.version}</version>
-			</dependency>
-			
 		</dependencies>
 	</dependencyManagement>
 
